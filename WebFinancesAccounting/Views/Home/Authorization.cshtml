@@ -1,0 +1,19 @@
+﻿@model WebFinancesAccounting.ViewModels.AuthorizationViewModel
+
+@{
+    ViewBag.Title = "Authorization";
+}
+
+<div>
+    Авторизуйтесь
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{
+    foreach (var user in Model.Users)
+    {
+        @*@*<input type="hidden" name="UserId" value="@user.UserId" />*@
+        <button type="submit" style="margin:5px; background-color:gray; color:white" value="@user.Id" name="UserId">@user.FirstName @user.LastName</button>
+        <br />
+    }
+}
+</div>
+

@@ -1,0 +1,19 @@
+﻿@model WebFinancesAccounting.ViewModels.ChangeAccountViewModel
+
+@{
+    ViewBag.Title = "ChangeAccount";
+}
+@using (Html.BeginForm("ChangeAccount", "Home", FormMethod.Post))
+{
+<div class="form-control" style="width:210px">
+    <input type="hidden" name="AccountId" value="@Model.AccountId" />
+    <input type="hidden" name="UserId" value="@Model.UserId" />
+    @Html.LabelFor(x => x.Name)<br />
+    @Html.EditorFor(x => x.Name)<br />
+    @Html.LabelFor(x => x.Count)<br />
+    @Html.EditorFor(x => x.Count)<br /><br />
+    <button type="submit" class="btn btn-primary">Изменить</button>
+    @Html.ActionLink("Отмена", "Index", new { Model.UserId}, new { @class="btn btn-primary"})
+</div>
+}
+

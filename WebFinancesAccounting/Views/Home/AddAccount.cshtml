@@ -1,0 +1,21 @@
+﻿@model WebFinancesAccounting.ViewModels.AddAcountViewModel
+
+@{
+    ViewBag.Title = "AddAccount";
+}
+@using (Html.BeginForm("AddAccount", "Home", FormMethod.Post))
+{
+<div class="form-control" style="width:210px">
+    <input type="hidden" value="@Model.UserId" name="UserId" />
+    @Html.LabelFor(x => x.Account.CurrencyName)<br />
+    @Html.ValidationMessageFor(x => x.Account.CurrencyName)<br />
+    @Html.EditorFor(x => x.Account.CurrencyName)<br />
+    @Html.LabelFor(x => x.Account.Count)<br />
+    @Html.ValidationMessageFor(x => x.Account.Count)<br />
+    @Html.EditorFor(x => x.Account.Count)<br /><br />
+    <button type="submit" class="btn btn-primary">Создать</button>
+    @Html.ActionLink("Отмена", "Index", new { Model.UserId }, new { @class = "btn btn-primary" })
+</div>
+}
+
+

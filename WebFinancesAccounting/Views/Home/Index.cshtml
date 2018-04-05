@@ -1,0 +1,41 @@
+﻿@model WebFinancesAccounting.ViewModels.IndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<div class="panel panel-primary" style="float: none;">
+    @using (Html.BeginForm("AddAccount", "Home", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-primary" name="UserId" value="@Model.User.Id">Добавить запись</button>
+    }
+    <div class="panel-heading">
+        <b>@Model.User.FIO</b>
+    </div>
+    @if (Model.Accounts.Count!=0)
+    {
+        using (Html.BeginForm("ChangeAccount", "Home", FormMethod.Get))
+        {
+            foreach (var account in Model.Accounts)
+            {
+                <table class="table table-bordered">
+                    <tr>
+                        <td>
+                            Дата добавления <b>@account.Time</b>
+                            @if (account.DateLastChanges!=null)
+                            {
+                                <br /> 
+                                @:Дата изменения <b>@(account.DateLastChanges)</b>
+                            }
+                        </td>
+                        <td>@account.CurrencyName</td>
+                        <td>@account.Count</td>
+                        <td><button type="submit" class="btn btn-primary" name="AccountId" value="@account.Id">Изменить</button></td>
+                    </tr>
+                </table>
+            }
+        }
+    }
+    else
+    {
+      <p>У вас пока нету записей в кошельке</p>
+    }
+</div>
